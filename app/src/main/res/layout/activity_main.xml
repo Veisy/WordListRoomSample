@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recyclerView_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:listitem="@layout/recyclerview_item"
@@ -27,5 +27,18 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/add_word"
         android:src="@drawable/ic_add_black_24"/>
+
+    <EditText
+        android:id="@+id/editText_newInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:hint="@string/add_word"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

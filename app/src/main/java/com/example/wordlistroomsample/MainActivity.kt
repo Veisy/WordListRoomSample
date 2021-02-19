@@ -1,9 +1,7 @@
 package com.example.wordlistroomsample
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.text.TextUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +10,6 @@ import com.example.wordlistroomsample.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val newWordActivityRequestCode = 1
     private val adapter = WordListAdapter()
     private val wordViewModel: WordViewModel by viewModels {
         WordViewModelFactory((application as WordsApplication).repository)
@@ -29,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        binding.recyclerview.adapter = adapter
-        binding.recyclerview.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewList.adapter = adapter
+        binding.recyclerViewList.layoutManager = LinearLayoutManager(this)
     }
 
     private fun initObserver() {
@@ -42,24 +39,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFloatingActionButton() {
         binding.fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewWordActivity::class.java)
-            startActivityForResult(intent, newWordActivityRequestCode)
-        }
-    }
+            val input = binding.editTextNewInput.text
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
-                val word = Word(it)
+            if(!TextUtils.isEmpty(input)) {
+                val word = Word(input.toString())
                 wordViewModel.insert(word)
+                binding.editTextNewInput.setText("")
             }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG).show()
+
         }
     }
+
 }
