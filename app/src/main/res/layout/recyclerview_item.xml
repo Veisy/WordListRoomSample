@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView_word"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="5dp"
+    app:contentPadding="5dp">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/word_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
-</LinearLayout>
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageView_wordIcon"
+            android:layout_width="@dimen/word_icon_size"
+            android:layout_height="@dimen/word_icon_size"
+            android:src="@drawable/ic_blur"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+       <TextView
+           android:id="@+id/textView_word"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_marginLeft="8dp"
+           android:layout_marginRight="8dp"
+           android:textSize="@dimen/word_text_size"
+           android:textColor="@color/green_dark"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintLeft_toRightOf="@id/imageView_wordIcon"
+           app:layout_constraintRight_toRightOf="parent"
+
+
+           />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
