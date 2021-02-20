@@ -8,7 +8,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Word::class), version = 1, exportSchema = false)
+@Database(
+        entities = arrayOf(Word::class),
+        version = 1,
+        exportSchema = false)
 abstract class WordRoomDatabase : RoomDatabase() {
 
     abstract fun wordDao() : WordDao
@@ -37,7 +40,6 @@ abstract class WordRoomDatabase : RoomDatabase() {
                 // return instance
                 instance
             }
-
         }
     }
 

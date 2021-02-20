@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/green_dark"
     app:cardCornerRadius="5dp"
     app:contentPadding="5dp">
 
@@ -28,7 +28,7 @@
            android:layout_marginLeft="8dp"
            android:layout_marginRight="8dp"
            android:textSize="@dimen/word_text_size"
-           android:textColor="@color/green_dark"
+           android:textColor="@color/white"
            app:layout_constraintTop_toTopOf="parent"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintLeft_toRightOf="@id/imageView_wordIcon"

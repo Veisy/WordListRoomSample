@@ -17,4 +17,7 @@ interface WordDao {
 
     @Query("DELETE FROM word_table")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM word_table WHERE word LIKE :searchQuery")
+    fun searchDatabase(searchQuery: String): Flow<List<Word>>
 }

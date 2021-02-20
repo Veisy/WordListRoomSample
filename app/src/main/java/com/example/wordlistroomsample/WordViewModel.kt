@@ -15,7 +15,11 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(word:Word) = viewModelScope.launch {
+    fun insert(word: Word) = viewModelScope.launch {
         repository.insert(word)
+    }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<Word>> {
+        return repository.searchDatabase(searchQuery).asLiveData()
     }
 }

@@ -19,4 +19,7 @@ class WordRepository(private val wordDao: WordDao) {
         wordDao.insert(word)
     }
 
+    fun searchDatabase(searchQuery: String): Flow<List<Word>> {
+        return wordDao.searchDatabase(searchQuery)
+    }
 }
