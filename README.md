@@ -15,8 +15,9 @@ View Binding
 
 ## Updates
   ### 21.02.2021
-  UI Update
-  *//TODO Swipe to delete with UNDO, update with UNDO*  
+  UI Update  
+  Delete option with UNDO is added.
+  Update option with UNDO is added.  
     
   ### 20.02.2021
   Search Feature has been added. The search made in the database is dynamically displayed in the RecyclerView.
