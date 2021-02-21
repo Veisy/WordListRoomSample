@@ -4,9 +4,13 @@ Repeating input is not added to list. Also sorts entries alphabetically.
 
 Includes: 
 Room, LiveData, ViewModel (Android Architecture Components)
-Kotlin Coroutines
+Kotlin Coroutines,
 View Binding
 
-![Screenshot_20210219-212619_WordListRoomSample](https://user-images.githubusercontent.com/43733328/108545788-4a114100-72f9-11eb-8c31-57b4d344ea1e.jpg)
+## Updates
+  ### 20.02.2021
+  Search Feature has been added. The search made in the database is dynamically displayed in the RecyclerView.
+![Screenshot_20210220-181623_WordListRoomSample](https://user-images.githubusercontent.com/43733328/108600367-fa3d8300-73a7-11eb-9017-a5c74420fb2b.jpg)
+
 
 
