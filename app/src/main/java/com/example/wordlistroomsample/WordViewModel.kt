@@ -19,6 +19,14 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
         repository.insert(word)
     }
 
+    fun update(word: Word) = viewModelScope.launch {
+        repository.update(word)
+    }
+
+    fun deleteWord(word: Word) = viewModelScope.launch {
+        repository.deleteWord(word)
+    }
+
     fun searchDatabase(searchQuery: String): LiveData<List<Word>> {
         return repository.searchDatabase(searchQuery).asLiveData()
     }

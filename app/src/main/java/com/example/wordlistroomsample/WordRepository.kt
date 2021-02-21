@@ -19,6 +19,16 @@ class WordRepository(private val wordDao: WordDao) {
         wordDao.insert(word)
     }
 
+    @WorkerThread
+    suspend fun update(word: Word) {
+        wordDao.update(word)
+    }
+
+    @WorkerThread
+    suspend fun deleteWord(word: Word) {
+        wordDao.deleteWord(word)
+    }
+
     fun searchDatabase(searchQuery: String): Flow<List<Word>> {
         return wordDao.searchDatabase(searchQuery)
     }
