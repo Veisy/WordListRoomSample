@@ -3,7 +3,14 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/green_dark</item>
         <item name="colorPrimaryDark">@color/green_dark</item>
-        <item name="colorAccent">@color/green_gray_light</item>
+        <item name="colorAccent">@color/yellow_gray_light</item>
+    </style>
+
+    <style name="text_list">
+        <item name="android:fontFamily">@font/dancing_script</item>
+        <item name="maxLines">1</item>
+        <item name="android:textColor">@color/gray_dark_50</item>
+        <item name="android:textSize">@dimen/word_text_size</item>
     </style>
 
 </resources>
