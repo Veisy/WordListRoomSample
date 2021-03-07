@@ -4,7 +4,7 @@ Repeating input is not added to list. Also sorts entries alphabetically.
   
 
 Includes: 
-Room, LiveData, ViewModel (Android Architecture Components)
+Room, LiveData, ViewModel (Android Architecture Components)  
 Hilt  
 Kotlin Coroutines  
 View Binding  
