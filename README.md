@@ -11,7 +11,7 @@ View Binding
     
 
 ## Updates  
-  ### 21.02.2021  
+  ### 8.03.2021  
   Dependency Injection with Hilt is added.
   The project is refactored to keep up with this chance. 
   Accordingly ViewModel.Factory class is deleted, because with Hilt we do not need to create costum factory classes for ViewModels.  
