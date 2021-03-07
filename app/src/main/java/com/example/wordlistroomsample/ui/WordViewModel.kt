@@ -1,9 +1,14 @@
-package com.example.wordlistroomsample
+package com.example.wordlistroomsample.ui
 
 import androidx.lifecycle.*
+import com.example.wordlistroomsample.WordRepository
+import com.example.wordlistroomsample.data.Word
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WordViewModel(private val repository: WordRepository) : ViewModel() {
+@HiltViewModel
+class WordViewModel @Inject constructor(private val repository: WordRepository) : ViewModel() {
 
     // Using LiveData and caching what allWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the

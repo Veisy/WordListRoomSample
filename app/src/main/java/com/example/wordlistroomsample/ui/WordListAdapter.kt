@@ -1,12 +1,12 @@
-package com.example.wordlistroomsample
+package com.example.wordlistroomsample.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordlistroomsample.data.Word
+import com.example.wordlistroomsample.databinding.RecyclerviewItemBinding
 
 class WordListAdapter (private val onWordClicked: (Int) -> Unit)
     : ListAdapter<Word, WordListAdapter.WordViewHolder>(WordsComparator()) {
@@ -24,9 +24,10 @@ class WordListAdapter (private val onWordClicked: (Int) -> Unit)
         return getItem(position)
     }
 
-    class WordViewHolder(itemView: View, onWordClicked: (Int) -> Unit)
-        : RecyclerView.ViewHolder(itemView) {
-        private val wordItemView: TextView = itemView.findViewById(R.id.textView_word)
+    class WordViewHolder(
+            private val binding: RecyclerviewItemBinding,
+            onWordClicked: (Int) -> Unit)
+        : RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.setOnClickListener{
@@ -35,25 +36,24 @@ class WordListAdapter (private val onWordClicked: (Int) -> Unit)
         }
 
         fun bind(text: String?) {
-            wordItemView.text = text
+            binding.textViewWord.text = text
         }
 
         companion object {
             fun create(parent: ViewGroup, onWordClicked: (Int) -> Unit): WordViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recyclerview_item, parent, false)
-                return WordViewHolder(view, onWordClicked)
+                val binding: RecyclerviewItemBinding = RecyclerviewItemBinding
+                        .inflate(LayoutInflater.from(parent.context), parent, false)
+                return WordViewHolder(binding, onWordClicked)
             }
         }
     }
 
     class WordsComparator : DiffUtil.ItemCallback<Word>() {
-        override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
-            return oldItem === newItem
-        }
+        override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean =
+            oldItem === newItem
 
-        override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
-            return oldItem.text == newItem.text
-        }
+        override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean =
+            oldItem.text == newItem.text
+
     }
 }
