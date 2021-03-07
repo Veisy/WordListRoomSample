@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/green_dark</item>
         <item name="colorPrimaryDark">@color/green_dark</item>
         <item name="colorAccent">@color/yellow_gray_light</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/black</item>
+    </style>
+
+    <style name="UpdateDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:background">@color/yellow</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="colorPrimary">@color/green_dark</item>
     </style>
 
     <style name="text_list">
         <item name="android:fontFamily">@font/dancing_script</item>
-        <item name="maxLines">1</item>
+        <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/gray_dark_50</item>
         <item name="android:textSize">@dimen/word_text_size</item>
     </style>

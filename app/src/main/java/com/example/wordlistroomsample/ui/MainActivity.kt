@@ -1,4 +1,4 @@
-package com.example.wordlistroomsample
+package com.example.wordlistroomsample.ui
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,17 +10,21 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordlistroomsample.R
+import com.example.wordlistroomsample.data.Word
 import com.example.wordlistroomsample.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter: WordListAdapter by lazy { WordListAdapter{ position: Int ->
         onWordClicked(position)
-    }}
-    private val wordViewModel: WordViewModel by viewModels {
-        WordViewModelFactory((application as WordsApplication).repository)
     }
+    }
+
+    private val wordViewModel: WordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +39,27 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun initRecyclerView() {
+
+//        binding.apply {
+//            recyclerViewList.apply {
+//                adapter = adapter
+//                layoutManager = layoutManager
+//                setHasFixedSize(true)
+//            }
+//        }
         binding.recyclerViewList.adapter = adapter
         binding.recyclerViewList.layoutManager = LinearLayoutManager(this)
+
     }
 
     private fun initObserver() {
-        wordViewModel.allWords.observe(this, { words ->
+        wordViewModel.allWords.observe(this) { words ->
             // Update the cached copy of the words in the adapter.
             words?.let { adapter.submitList(it) }
             if (adapter.itemCount > 1) {
                 binding.recyclerViewList.smoothScrollToPosition(adapter.itemCount - 1)
             }
-        })
+        }
     }
 
     private fun initItemTouchHelper() {
@@ -103,8 +116,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val editText = EditText(this)
         editText.setText(adapter.getWordAt(position).text)
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Update Item")
+        val builder = AlertDialog.Builder(this, R.style.UpdateDialogTheme)
         builder.setCancelable(true)
         builder.setView(editText)
 
@@ -113,8 +125,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         builder.setPositiveButton("Update") { _, _ ->
             val id = adapter.getWordAt(position).id
-            val newWord = Word(id, editText.text.toString())
-            wordViewModel.update(newWord)
+            if(adapter.getWordAt(position).text != editText.text.toString()) {
+                val newWord = Word(id, editText.text.toString())
+                wordViewModel.update(newWord)
+            }
         }
 
         builder.show()
