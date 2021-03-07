@@ -8,12 +8,14 @@ Room, LiveData, ViewModel (Android Architecture Components)
   
 Kotlin Coroutines,
 View Binding
-
-  
-**NEXT STUDY CASE: DEPENDENCY INJECTION WITH HILT** 
   
 
-## Updates
+## Updates  
+  ### 21.02.2021  
+  Dependency Injection with Hilt is added.
+  The project is refactored to keep up with this chance. 
+  Accordingly ViewModel.Factory class is deleted, because with Hilt we do not need to create costum factory classes for ViewModels.  
+    
   ### 21.02.2021
   UI Update  
   Delete option with UNDO is added.
