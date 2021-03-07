@@ -5,10 +5,10 @@ Repeating input is not added to list. Also sorts entries alphabetically.
 
 Includes: 
 Room, LiveData, ViewModel (Android Architecture Components)
-  
-Kotlin Coroutines,
-View Binding
-  
+Hilt  
+Kotlin Coroutines  
+View Binding  
+    
 
 ## Updates  
   ### 21.02.2021  
