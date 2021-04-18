@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+#Run lint checks before push.
+
+# Perform lint debug check
+
+./gradlew lintDebug
+lintDebugStatus=$?
+
+if [ $lintDebugStatus -ne 0 ]
+then
+  echo "lintDebug built failure, git push aborted."
+  exit 1
+fi
+
+username=$(git config user.name)
+if [ "$username" != "KaraAhmet" ] 
+then
+	echo  "user.name not set to KaraAhmet"
+	exit 1
+fi
