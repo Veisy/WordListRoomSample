@@ -26,9 +26,3 @@ else
   
 fi
 
-username=$(git config user.name)
-if [ "$username" != "KaraAhmet" ] 
-then
-	echo  "user.name not set to KaraAhmet"
-	exit 1
-fi
