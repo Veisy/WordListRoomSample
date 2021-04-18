@@ -39,12 +39,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun initRecyclerView() {
-        // Test
+
         binding.apply {
             recyclerViewList.apply {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                setHasFixedSize(tr
+                setHasFixedSize(true)
             }
         }
     }

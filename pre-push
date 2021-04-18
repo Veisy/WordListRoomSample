@@ -3,12 +3,24 @@
 # This hook runs link checks before push.
 
 # Perform lint check
-echo "Performing lint"
+echo "Performing lint check on debug"
 ./gradlew lintDebug
 lintDebugStatus=$?
 
 if [ $lintDebugStatus -ne 0 ]
 then
-  echo "debug build check is failed."
-  exit 1
+	echo "debug build check is failed."
+	cat <<\EOF	
+Error: debug build check is failed.
+EOF
+	exit 1
+fi
+
+username=$(git config user.name)
+if [ "$username" != "KaraAhmet" ] 
+then
+	cat <<\EOF
+Error: user.name not set to "KaraAhmet"
+EOF
+	exit 1
 fi
