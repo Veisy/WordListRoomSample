@@ -4,6 +4,7 @@
 
 # Perform lint debug check
 
+echo "Checking debug built ..."
 ./gradlew lintDebug
 lintDebugStatus=$?
 
@@ -11,6 +12,18 @@ if [ $lintDebugStatus -ne 0 ]
 then
   echo "lintDebug built failure, git push aborted."
   exit 1
+  
+else
+	echo "Checking release built ..."
+	./gradlew lintRelease
+	lintRealeseStatus=$?
+	
+	if [ $lintRealeseStatus -ne 0 ]
+	then
+		echo "lintRelease built failure, git push aborted."
+		exit 1
+	fi
+  
 fi
 
 username=$(git config user.name)
