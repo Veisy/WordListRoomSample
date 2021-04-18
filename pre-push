@@ -5,7 +5,7 @@
 # Perform lint debug check
 
 echo "Checking debug built ..."
-./gradlew lintDebug
+./gradlew :app:lintDebug
 lintDebugStatus=$?
 
 if [ $lintDebugStatus -ne 0 ]
@@ -15,7 +15,7 @@ then
   
 else
 	echo "Checking release built ..."
-	./gradlew lintRelease
+	./gradlew :app:lintRelease
 	lintRealeseStatus=$?
 	
 	if [ $lintRealeseStatus -ne 0 ]

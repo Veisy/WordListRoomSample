@@ -15,6 +15,10 @@ task gitExecutableHooks() {
 		Runtime.getRuntime().exec("chmod -R +x ${hookDest}");
 		println "gitExecutableHooks"
 	}
+	
+	if ( DefaultNativePlatform.getCurrentOperatingSystem().isWindows()) {
+		println "Running on Windows.."
+	}
 }
 
 gitExecutableHooks.dependsOn installGitHooksTask
