@@ -5,6 +5,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+apply from: rootProject.file('gradle/install-git-hooks.gradle')
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"

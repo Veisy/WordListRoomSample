@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# This hook runs link checks before push.
+
+# Perform lint check
+echo "Performing lint"
+./gradlew lintDebug
+lintDebugStatus=$?
+
+if [ $lintDebugStatus -ne 0 ]
+then
+  echo "debug build check is failed."
+  exit 1
+fi

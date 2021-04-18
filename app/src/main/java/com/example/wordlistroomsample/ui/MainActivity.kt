@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             recyclerViewList.apply {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                setHasFixedSize(true)
+                setHasFixedSize(tr
             }
         }
     }
