@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter: WordListAdapter by lazy { WordListAdapter{ position: Int ->
+    private val mAdapter: WordListAdapter by lazy { WordListAdapter{ position: Int ->
         onWordClicked(position)
     }
     }
@@ -39,25 +39,22 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun initRecyclerView() {
-
-//        binding.apply {
-//            recyclerViewList.apply {
-//                adapter = adapter
-//                layoutManager = layoutManager
-//                setHasFixedSize(true)
-//            }
-//        }
-        binding.recyclerViewList.adapter = adapter
-        binding.recyclerViewList.layoutManager = LinearLayoutManager(this)
-
+        // Test
+        binding.apply {
+            recyclerViewList.apply {
+                adapter = mAdapter
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                setHasFixedSize(true)
+            }
+        }
     }
 
     private fun initObserver() {
         wordViewModel.allWords.observe(this) { words ->
             // Update the cached copy of the words in the adapter.
-            words?.let { adapter.submitList(it) }
-            if (adapter.itemCount > 1) {
-                binding.recyclerViewList.smoothScrollToPosition(adapter.itemCount - 1)
+            words?.let { mAdapter.submitList(it) }
+            if (mAdapter.itemCount > 1) {
+                binding.recyclerViewList.smoothScrollToPosition(mAdapter.itemCount - 1)
             }
         }
     }
@@ -69,7 +66,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                wordViewModel.deleteWord(adapter.getWordAt(viewHolder.adapterPosition))
+                wordViewModel.deleteWord(mAdapter.getWordAt(viewHolder.adapterPosition))
             }
         }
         val itemTouchHelper = ItemTouchHelper(simpleCallback)
@@ -97,7 +94,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val searchQuery = "%$query%"
 
         wordViewModel.searchDatabase(searchQuery).observe(this,  { words ->
-            words?.let { adapter.submitList(it) }
+            words?.let { mAdapter.submitList(it) }
         })
     }
 
@@ -114,7 +111,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun onWordClicked(position: Int) {
         val editText = EditText(this)
-        editText.setText(adapter.getWordAt(position).text)
+        editText.setText(mAdapter.getWordAt(position).text)
 
         val builder = AlertDialog.Builder(this, R.style.UpdateDialogTheme)
         builder.setCancelable(true)
@@ -124,8 +121,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
 
         builder.setPositiveButton("Update") { _, _ ->
-            val id = adapter.getWordAt(position).id
-            if(adapter.getWordAt(position).text != editText.text.toString()) {
+            val id = mAdapter.getWordAt(position).id
+            if(mAdapter.getWordAt(position).text != editText.text.toString()) {
                 val newWord = Word(id, editText.text.toString())
                 wordViewModel.update(newWord)
             }
