@@ -1,26 +1,26 @@
 #!/bin/sh
 #
-#Run lint checks before push.
-
-# Perform lint debug check
+#Check build variants before push.
 
 echo "Checking debug built ..."
-./gradlew :app:lintDebug
-lintDebugStatus=$?
+#./gradlew :app:lintDebug
+./gradlew :app:compileDebugSources
+debugStatus=$?
 
-if [ $lintDebugStatus -ne 0 ]
+if [ $debugStatus -ne 0 ]
 then
-  echo "lintDebug built failure, git push aborted."
+  echo "compileDebugSources built failure, git push aborted."
   exit 1
   
 else
 	echo "Checking release built ..."
-	./gradlew :app:lintRelease
-	lintRealeseStatus=$?
+	#./gradlew :app:lintRelease
+	./gradlew :app:compileReleaseSources
+	realeseStatus=$?
 	
-	if [ $lintRealeseStatus -ne 0 ]
+	if [ $realeseStatus -ne 0 ]
 	then
-		echo "lintRelease built failure, git push aborted."
+		echo "compileReleaseSources built failure, git push aborted."
 		exit 1
 	fi
   
