@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun initRecyclerView() {
 
-        binding.apply {
+        ing.apply {
             recyclerViewList.apply {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
