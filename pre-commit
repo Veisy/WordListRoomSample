@@ -2,25 +2,29 @@
 #
 #Check build variants before push.
 
-echo "Checking debug built ..."
+echo "CHECKING DEBUG built ..."
 #./gradlew :app:lintDebug
 ./gradlew :app:compileDebugSources
 debugStatus=$?
 
 if [ $debugStatus -ne 0 ]
 then
-  echo "compileDebugSources built failure, git push aborted."
+  cat <<\EOF
+Error: compileDebugSources BUILT FAILURE, git commit aborted.
+EOF
   exit 1
   
 else
-	echo "Checking release built ..."
+	echo "CHECKING DEBUG built ..."
 	#./gradlew :app:lintRelease
 	./gradlew :app:compileReleaseSources
 	realeseStatus=$?
 	
 	if [ $realeseStatus -ne 0 ]
 	then
-		echo "compileReleaseSources built failure, git push aborted."
+		cat <<\EOF
+Error: compileReleaseSources BUILT FAILURE, git commit aborted.
+EOF
 		exit 1
 	fi
   

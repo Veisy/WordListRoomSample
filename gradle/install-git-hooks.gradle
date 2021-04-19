@@ -1,11 +1,11 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
-def hookDest = new File("${rootProject.rootDir}/.git/hooks/pre-push")
-def prePushHook = new File("${rootProject.rootDir}/pre-push")
+def hookDest = new File("${rootProject.rootDir}/.git/hooks/pre-commit")
+def preCommitHook = new File("${rootProject.rootDir}/pre-commit")
 
 task installGitHooksTask(type: Copy) {
     hookDest.delete()
-    hookDest << prePushHook.text
+    hookDest << preCommitHook.text
 	fileMode 0775
 }
 
